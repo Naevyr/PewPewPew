@@ -1,4 +1,4 @@
-#PewPewPew
+# PewPewPew
 
 Entry for the GBJAM 11 (2023)
 You can play PewPewPew on [Itch.io](https://naevyr.itch.io/pewpewpew).
