@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://l4bnbd0vmmay"]
+
+[ext_resource type="Script" path="res://Levels/Level.gd" id="1_c2054"]
+[ext_resource type="PackedScene" uid="uid://ppje0obfd5ip" path="res://Characters/Enemy.tscn" id="2_ral4i"]
+[ext_resource type="PackedScene" uid="uid://ns88i716dmav" path="res://Levels/Level 2/Map.tscn" id="2_ty1pu"]
+[ext_resource type="PackedScene" uid="uid://bpwj37ull83l6" path="res://Characters/Player.tscn" id="3_d57rf"]
+[ext_resource type="Script" path="res://MainCamera.gd" id="4_m34g1"]
+[ext_resource type="PackedScene" uid="uid://be4smbjm7gy22" path="res://UI.tscn" id="5_tt3kr"]
+[ext_resource type="AudioStream" uid="uid://bcawppr1x2s4k" path="res://Assets/Sounds/Music/Level.mp3" id="7_tptr1"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_c2054")
+level_index = 1
+
+[node name="Node2D" parent="." instance=ExtResource("2_ty1pu")]
+
+[node name="Enemy" parent="Node2D" instance=ExtResource("2_ral4i")]
+position = Vector2(84, 36)
+
+[node name="Enemy2" parent="Node2D" instance=ExtResource("2_ral4i")]
+position = Vector2(13, -90)
+
+[node name="Enemy3" parent="Node2D" instance=ExtResource("2_ral4i")]
+position = Vector2(15, -155)
+
+[node name="Enemy4" parent="Node2D" instance=ExtResource("2_ral4i")]
+position = Vector2(404, 21)
+
+[node name="Enemy5" parent="Node2D" instance=ExtResource("2_ral4i")]
+position = Vector2(403, -197)
+
+[node name="Enemy6" parent="Node2D" instance=ExtResource("2_ral4i")]
+position = Vector2(278, 21)
+
+[node name="Enemy7" parent="Node2D" instance=ExtResource("2_ral4i")]
+position = Vector2(145, -73)
+
+[node name="Player" parent="Node2D" instance=ExtResource("3_d57rf")]
+
+[node name="Camera" type="Camera2D" parent="Node2D"]
+script = ExtResource("4_m34g1")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" parent="CanvasLayer" instance=ExtResource("5_tt3kr")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_tptr1")
+autoplay = true
+
+[connection signal="player_death" from="Node2D/Player" to="." method="_on_player_player_death"]

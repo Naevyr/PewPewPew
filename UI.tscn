@@ -1,0 +1,114 @@
+[gd_scene load_steps=6 format=3 uid="uid://be4smbjm7gy22"]
+
+[ext_resource type="FontFile" uid="uid://c7tefew45jffm" path="res://Assets/PublicPixel-z84yD.ttf" id="2_57yx6"]
+[ext_resource type="Texture2D" uid="uid://5w77ttjjl4ri" path="res://Assets/UI/Banner.png" id="3_0wgeh"]
+
+[sub_resource type="GDScript" id="GDScript_xhyf1"]
+script/source = "extends Label
+
+var player : Player 
+
+func _process(delta):
+	if player == null:
+		player = get_node('/root/Globals').player
+		return
+	text = str(player.charge)
+"
+
+[sub_resource type="GDScript" id="GDScript_6x6vl"]
+script/source = "extends Label
+
+var player : Player 
+
+func _process(delta):
+	if player == null:
+		player = get_node('/root/Globals').player
+		return
+	text = str(player.max_charge)
+"
+
+[sub_resource type="GDScript" id="GDScript_gkiv6"]
+script/source = "extends Label
+
+var player : Player 
+var past_delta = 0
+func _process(delta):
+	past_delta += delta
+	text = \"E \" + str(get_node('../../../../').enemies.size()) + \" | \" + str(round(past_delta)) + \"s\"
+"
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = -21.0
+offset_right = 80.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("3_0wgeh")
+stretch_mode = 2
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HealthLabel" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 130.0
+offset_right = 156.0
+offset_bottom = 149.0
+theme_override_fonts/font = ExtResource("2_57yx6")
+theme_override_font_sizes/font_size = 8
+text = "0"
+script = SubResource("GDScript_xhyf1")
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 130.0
+offset_right = 57.0
+offset_bottom = 153.0
+theme_override_fonts/font = ExtResource("2_57yx6")
+theme_override_font_sizes/font_size = 8
+text = "|"
+
+[node name="MaxHealthLabel" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 23.0
+offset_top = 130.0
+offset_right = 169.0
+offset_bottom = 149.0
+theme_override_fonts/font = ExtResource("2_57yx6")
+theme_override_font_sizes/font_size = 8
+text = "0"
+script = SubResource("GDScript_6x6vl")
+
+[node name="Charge" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Charge"]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 129.0
+offset_right = 187.0
+offset_bottom = 155.0
+theme_override_fonts/font = ExtResource("2_57yx6")
+theme_override_font_sizes/font_size = 8
+text = "::::000"
+script = SubResource("GDScript_gkiv6")

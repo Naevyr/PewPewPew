@@ -1,0 +1,334 @@
+[gd_scene load_steps=9 format=3 uid="uid://b813q2fds36ew"]
+
+[ext_resource type="PackedScene" uid="uid://be4smbjm7gy22" path="res://UI.tscn" id="1_2n05y"]
+[ext_resource type="PackedScene" uid="uid://bpwj37ull83l6" path="res://Characters/Player.tscn" id="1_6k0yg"]
+[ext_resource type="Script" path="res://Levels/Level.gd" id="1_6uver"]
+[ext_resource type="PackedScene" uid="uid://b8tclxtf76uf7" path="res://Levels/Level 1/Map.tscn" id="2_aoubl"]
+[ext_resource type="Script" path="res://MainCamera.gd" id="2_u0ccu"]
+[ext_resource type="PackedScene" uid="uid://ppje0obfd5ip" path="res://Characters/Enemy.tscn" id="5_erndh"]
+[ext_resource type="FontFile" uid="uid://c7tefew45jffm" path="res://Assets/PublicPixel-z84yD.ttf" id="5_ho2sd"]
+[ext_resource type="AudioStream" uid="uid://bcawppr1x2s4k" path="res://Assets/Sounds/Music/Level.mp3" id="8_p0y6r"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_6uver")
+
+[node name="Node2D" parent="." instance=ExtResource("2_aoubl")]
+
+[node name="Control" type="Control" parent="Node2D"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Control" type="Control" parent="Node2D/Control"]
+anchors_preset = 0
+offset_left = -102.0
+offset_top = -84.0
+offset_right = -62.0
+offset_bottom = -44.0
+
+[node name="ColorRect" type="ColorRect" parent="Node2D/Control/Control"]
+layout_mode = 0
+offset_right = 139.0
+offset_bottom = 13.0
+
+[node name="Label" type="Label" parent="Node2D/Control/Control"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_right = 136.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("5_ho2sd")
+theme_override_font_sizes/font_size = 8
+text = "PRESS DPAD TO AIM"
+
+[node name="Control2" type="Control" parent="Node2D/Control"]
+anchors_preset = 0
+offset_left = -112.0
+offset_top = -34.0
+offset_right = -72.0
+offset_bottom = 6.0
+
+[node name="ColorRect" type="ColorRect" parent="Node2D/Control/Control2"]
+layout_mode = 0
+offset_right = 149.0
+offset_bottom = 13.0
+
+[node name="Label" type="Label" parent="Node2D/Control/Control2"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_right = 144.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("5_ho2sd")
+theme_override_font_sizes/font_size = 8
+text = "AIM ^UP AND PRESS B"
+
+[node name="Control3" type="Control" parent="Node2D/Control"]
+anchors_preset = 0
+offset_left = -113.0
+offset_top = 40.0
+offset_right = -73.0
+offset_bottom = 80.0
+
+[node name="ColorRect" type="ColorRect" parent="Node2D/Control/Control3"]
+layout_mode = 0
+offset_right = 161.0
+offset_bottom = 31.0
+
+[node name="Label" type="Label" parent="Node2D/Control/Control3"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_right = 160.0
+offset_bottom = 33.0
+theme_override_fonts/font = ExtResource("5_ho2sd")
+theme_override_font_sizes/font_size = 8
+text = "HEALTH AND AMMO
+BOTH USE ENERGY
+DON'T GET IT TOO LOW"
+horizontal_alignment = 1
+
+[node name="Control5" type="Control" parent="Node2D/Control"]
+anchors_preset = 0
+offset_left = 35.0
+offset_top = 41.0
+offset_right = 75.0
+offset_bottom = 81.0
+
+[node name="ColorRect" type="ColorRect" parent="Node2D/Control/Control5"]
+layout_mode = 0
+offset_left = 44.0
+offset_right = 192.0
+offset_bottom = 24.0
+
+[node name="Label" type="Label" parent="Node2D/Control/Control5"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 47.0
+offset_top = 3.0
+offset_right = 207.0
+offset_bottom = 36.0
+theme_override_fonts/font = ExtResource("5_ho2sd")
+theme_override_font_sizes/font_size = 8
+text = "THOSE ARE BOMBS
+YOUR WAY OF MOVING"
+
+[node name="Control9" type="Control" parent="Node2D/Control"]
+anchors_preset = 0
+offset_left = 38.0
+offset_top = 125.0
+offset_right = 78.0
+offset_bottom = 165.0
+
+[node name="ColorRect" type="ColorRect" parent="Node2D/Control/Control9"]
+layout_mode = 0
+offset_left = 43.0
+offset_right = 174.0
+offset_bottom = 24.0
+
+[node name="Label" type="Label" parent="Node2D/Control/Control9"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 47.0
+offset_top = 3.0
+offset_right = 207.0
+offset_bottom = 36.0
+theme_override_fonts/font = ExtResource("5_ho2sd")
+theme_override_font_sizes/font_size = 8
+text = "BOMBS (B) DO NOT
+DEAL DAMAGE"
+
+[node name="Control7" type="Control" parent="Node2D/Control"]
+anchors_preset = 0
+offset_left = 24.0
+offset_top = 171.0
+offset_right = 64.0
+offset_bottom = 211.0
+
+[node name="ColorRect" type="ColorRect" parent="Node2D/Control/Control7"]
+layout_mode = 0
+offset_left = 62.0
+offset_right = 189.0
+offset_bottom = 35.0
+
+[node name="Label" type="Label" parent="Node2D/Control/Control7"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 47.0
+offset_top = 3.0
+offset_right = 207.0
+offset_bottom = 36.0
+theme_override_fonts/font = ExtResource("5_ho2sd")
+theme_override_font_sizes/font_size = 8
+text = "BOMB EXPLOSIONS
+AGAINST WALLS
+PUSH YOU MORE"
+horizontal_alignment = 1
+
+[node name="Control6" type="Control" parent="Node2D/Control"]
+anchors_preset = 0
+offset_left = -162.0
+offset_top = 158.0
+offset_right = -122.0
+offset_bottom = 198.0
+
+[node name="ColorRect" type="ColorRect" parent="Node2D/Control/Control6"]
+layout_mode = 0
+offset_left = 44.0
+offset_right = 206.0
+offset_bottom = 37.0
+
+[node name="Label" type="Label" parent="Node2D/Control/Control6"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 47.0
+offset_top = 3.0
+offset_right = 207.0
+offset_bottom = 36.0
+theme_override_fonts/font = ExtResource("5_ho2sd")
+theme_override_font_sizes/font_size = 8
+text = "ABSORB PROJECTILES
+FOR ENERGY
+AIM <LEFT GOING vDOWN"
+horizontal_alignment = 1
+
+[node name="Control8" type="Control" parent="Node2D/Control"]
+anchors_preset = 0
+offset_left = -153.0
+offset_top = 328.0
+offset_right = -113.0
+offset_bottom = 368.0
+
+[node name="ColorRect" type="ColorRect" parent="Node2D/Control/Control8"]
+layout_mode = 0
+offset_left = 44.0
+offset_right = 185.0
+offset_bottom = 28.0
+
+[node name="Label" type="Label" parent="Node2D/Control/Control8"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 28.0
+offset_top = 2.0
+offset_right = 188.0
+offset_bottom = 35.0
+theme_override_fonts/font = ExtResource("5_ho2sd")
+theme_override_font_sizes/font_size = 8
+text = "SHOOT ENEMY 
+AIM RIGHT> PRESS A"
+horizontal_alignment = 1
+
+[node name="Control10" type="Control" parent="Node2D/Control"]
+anchors_preset = 0
+offset_left = -157.0
+offset_top = 264.0
+offset_right = -117.0
+offset_bottom = 304.0
+
+[node name="ColorRect" type="ColorRect" parent="Node2D/Control/Control10"]
+layout_mode = 0
+offset_left = 55.0
+offset_top = -3.0
+offset_right = 190.0
+offset_bottom = 23.0
+
+[node name="Label" type="Label" parent="Node2D/Control/Control10"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 47.0
+offset_top = 3.0
+offset_right = 207.0
+offset_bottom = 36.0
+theme_override_fonts/font = ExtResource("5_ho2sd")
+theme_override_font_sizes/font_size = 8
+text = "KILL ALL ENEMIES
+TO CLEAR STAGE"
+
+[node name="Control11" type="Control" parent="Node2D/Control"]
+anchors_preset = 0
+offset_left = -33.0
+offset_top = 296.0
+offset_right = 7.0
+offset_bottom = 336.0
+
+[node name="Label" type="Label" parent="Node2D/Control/Control11"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 23.0
+offset_top = 6.0
+offset_right = 183.0
+offset_bottom = 39.0
+theme_override_fonts/font = ExtResource("5_ho2sd")
+theme_override_font_sizes/font_size = 8
+text = "ENEMY ->"
+
+[node name="Control12" type="Control" parent="Node2D/Control"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label2" type="Label" parent="Node2D/Control/Control12"]
+modulate = Color(0.337255, 0.337255, 0.337255, 1)
+layout_mode = 0
+offset_left = -31.0
+offset_top = 87.0
+offset_right = 129.0
+offset_bottom = 120.0
+theme_override_fonts/font = ExtResource("5_ho2sd")
+theme_override_font_sizes/font_size = 8
+text = "LEFT--->"
+
+[node name="Label3" type="Label" parent="Node2D/Control/Control12"]
+modulate = Color(0.337255, 0.337255, 0.337255, 1)
+layout_mode = 0
+offset_left = -25.0
+offset_top = 86.0
+offset_right = 135.0
+offset_bottom = 130.0
+theme_override_fonts/font = ExtResource("5_ho2sd")
+theme_override_font_sizes/font_size = 8
+text = "DOWN
+|
+v"
+horizontal_alignment = 2
+
+[node name="Label4" type="Label" parent="Node2D/Control/Control12"]
+modulate = Color(0.337255, 0.337255, 0.337255, 1)
+layout_mode = 0
+offset_left = 74.0
+offset_top = 213.0
+offset_right = 234.0
+offset_bottom = 257.0
+theme_override_fonts/font = ExtResource("5_ho2sd")
+theme_override_font_sizes/font_size = 8
+text = "<--RIGHT"
+
+[node name="Label5" type="Label" parent="Node2D/Control/Control12"]
+modulate = Color(0.337255, 0.337255, 0.337255, 1)
+layout_mode = 0
+offset_left = -26.0
+offset_top = 211.0
+offset_right = 134.0
+offset_bottom = 255.0
+theme_override_fonts/font = ExtResource("5_ho2sd")
+theme_override_font_sizes/font_size = 8
+text = "DOWN
+|
+v"
+
+[node name="Player" parent="Node2D" instance=ExtResource("1_6k0yg")]
+position = Vector2(-35, -51)
+
+[node name="Camera" type="Camera2D" parent="Node2D"]
+script = ExtResource("2_u0ccu")
+
+[node name="Enemy" parent="Node2D" instance=ExtResource("5_erndh")]
+position = Vector2(147, 311)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" parent="CanvasLayer" instance=ExtResource("1_2n05y")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_p0y6r")
+autoplay = true
+
+[connection signal="player_death" from="Node2D/Player" to="." method="_on_player_player_death"]

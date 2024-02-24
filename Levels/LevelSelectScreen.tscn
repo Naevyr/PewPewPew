@@ -1,0 +1,142 @@
+[gd_scene load_steps=11 format=3 uid="uid://nc4ktv6rnsl4"]
+
+[ext_resource type="Texture2D" uid="uid://bwbkrtepc8tkk" path="res://Assets/LevelSelectScreen.png" id="1_0sj3p"]
+[ext_resource type="Texture2D" uid="uid://chfiksfnk7bj0" path="res://Assets/Level.png" id="1_k2ubq"]
+[ext_resource type="Script" path="res://UI/LevelSelector.gd" id="2_8vul3"]
+[ext_resource type="PackedScene" uid="uid://b813q2fds36ew" path="res://Levels/Level 1/Main.tscn" id="3_8xqmo"]
+[ext_resource type="Texture2D" uid="uid://ct1w444a6o4df" path="res://Assets/Level_selected.png" id="3_qebsy"]
+[ext_resource type="PackedScene" uid="uid://l4bnbd0vmmay" path="res://Levels/Level 2/Main.tscn" id="5_nsb0i"]
+[ext_resource type="PackedScene" uid="uid://0jg8wxcmxnro" path="res://Levels/Level 3/Main.tscn" id="6_a1hrq"]
+[ext_resource type="PackedScene" uid="uid://76y54v5250xl" path="res://Levels/Boss Fight/Main.tscn" id="7_jwyi8"]
+[ext_resource type="AudioStream" uid="uid://c1l1mwmqvbony" path="res://Assets/Sounds/Select.mp3" id="8_cjkyn"]
+
+[sub_resource type="GDScript" id="GDScript_q4l7p"]
+script/source = "extends Control
+
+var selected = 1
+var completed_levels = 0
+
+
+@export var delay = 0.5
+
+func _ready():
+	
+	
+	
+	get_child(1).enabled = true
+	var levels = get_node(\"/root/Globals\").completed_levels
+	for level in levels:
+		if levels[level]:
+			completed_levels += 1
+			if level < 3:
+				get_child(level + 2).enabled = true
+
+
+
+
+func _process(delta):
+	if delta > 0:
+		delay -= delta
+	
+func _input(event):
+	
+	if delay > 0:
+		return
+		
+	get_child(selected).selected = false
+	
+	
+	if event.is_action_pressed('left'):
+		selected = clamp(selected - 1,1, completed_levels + 1 )
+		$SelectedSound.play()
+		
+	if event.is_action_pressed('right'):
+		selected = clamp(selected + 1,1, completed_levels + 1 )
+		$SelectedSound.play()
+		
+	get_child(selected).selected = true
+"
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_q4l7p")
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_0sj3p")
+
+[node name="Level 1" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 72.0
+offset_right = 29.0
+offset_bottom = 80.0
+texture = ExtResource("1_k2ubq")
+script = ExtResource("2_8vul3")
+level = ExtResource("3_8xqmo")
+
+[node name="Selected" type="TextureRect" parent="Control/Level 1"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+texture = ExtResource("3_qebsy")
+
+[node name="Level 2" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 73.0
+offset_right = 70.0
+offset_bottom = 81.0
+texture = ExtResource("1_k2ubq")
+script = ExtResource("2_8vul3")
+level = ExtResource("5_nsb0i")
+
+[node name="Selected" type="TextureRect" parent="Control/Level 2"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+texture = ExtResource("3_qebsy")
+
+[node name="Level 3" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 99.0
+offset_top = 69.0
+offset_right = 107.0
+offset_bottom = 77.0
+texture = ExtResource("1_k2ubq")
+script = ExtResource("2_8vul3")
+level = ExtResource("6_a1hrq")
+
+[node name="Selected" type="TextureRect" parent="Control/Level 3"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+texture = ExtResource("3_qebsy")
+
+[node name="Level 4" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 133.0
+offset_top = 68.0
+offset_right = 141.0
+offset_bottom = 76.0
+texture = ExtResource("1_k2ubq")
+script = ExtResource("2_8vul3")
+level = ExtResource("7_jwyi8")
+
+[node name="Selected" type="TextureRect" parent="Control/Level 4"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+texture = ExtResource("3_qebsy")
+
+[node name="SelectedSound" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource("8_cjkyn")

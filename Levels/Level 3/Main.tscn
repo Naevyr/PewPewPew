@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://0jg8wxcmxnro"]
+
+[ext_resource type="PackedScene" uid="uid://hdykkrseduf6" path="res://Levels/Level 3/Map.tscn" id="1_1y2lx"]
+[ext_resource type="Script" path="res://Levels/Level.gd" id="1_jl5dq"]
+[ext_resource type="PackedScene" uid="uid://ppje0obfd5ip" path="res://Characters/Enemy.tscn" id="2_bpgah"]
+[ext_resource type="PackedScene" uid="uid://bpwj37ull83l6" path="res://Characters/Player.tscn" id="3_1upjk"]
+[ext_resource type="Script" path="res://MainCamera.gd" id="4_haai8"]
+[ext_resource type="PackedScene" uid="uid://be4smbjm7gy22" path="res://UI.tscn" id="5_jx7tw"]
+[ext_resource type="AudioStream" uid="uid://bcawppr1x2s4k" path="res://Assets/Sounds/Music/Level.mp3" id="7_qugw5"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_jl5dq")
+level_index = 2
+
+[node name="Node2D" parent="." instance=ExtResource("1_1y2lx")]
+
+[node name="Enemy" parent="Node2D" instance=ExtResource("2_bpgah")]
+position = Vector2(84, 36)
+
+[node name="Enemy2" parent="Node2D" instance=ExtResource("2_bpgah")]
+position = Vector2(-34, 167)
+
+[node name="Enemy3" parent="Node2D" instance=ExtResource("2_bpgah")]
+position = Vector2(66, 166)
+
+[node name="Enemy4" parent="Node2D" instance=ExtResource("2_bpgah")]
+position = Vector2(180, 165)
+
+[node name="Enemy5" parent="Node2D" instance=ExtResource("2_bpgah")]
+position = Vector2(275, 166)
+
+[node name="Player" parent="Node2D" instance=ExtResource("3_1upjk")]
+position = Vector2(-35, -52)
+
+[node name="Camera" type="Camera2D" parent="Node2D"]
+script = ExtResource("4_haai8")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" parent="CanvasLayer" instance=ExtResource("5_jx7tw")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_qugw5")
+autoplay = true
+
+[connection signal="player_death" from="Node2D/Player" to="." method="_on_player_player_death"]

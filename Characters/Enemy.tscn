@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://ppje0obfd5ip"]
+
+[ext_resource type="Script" path="res://Characters/Enemy.gd" id="1_0mec7"]
+[ext_resource type="PackedScene" uid="uid://ywlqev63wvru" path="res://Shooting/Projectile.tscn" id="2_obxfv"]
+[ext_resource type="Texture2D" uid="uid://dpbt826srd37k" path="res://Assets/Enemy.png" id="3_gawi6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v7uvr"]
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 128
+script = ExtResource("1_0mec7")
+projectile = ExtResource("2_obxfv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_gawi6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_v7uvr")

@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://ggny5qoupvbc"]
+
+[ext_resource type="Script" path="res://Shooting/Bomb.gd" id="1_1ba8x"]
+[ext_resource type="PackedScene" uid="uid://ritqq3tjde4b" path="res://Shooting/Explosion.tscn" id="2_rs7xs"]
+[ext_resource type="Texture2D" uid="uid://dcm54ydqby547" path="res://Assets/Bomb.png" id="3_j4p55"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m2vdw"]
+size = Vector2(6, 6)
+
+[node name="Bomb" type="Area2D"]
+collision_layer = 0
+collision_mask = 130
+script = ExtResource("1_1ba8x")
+explosion = ExtResource("2_rs7xs")
+
+[node name="BombArea" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_m2vdw")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("3_j4p55")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,130 @@
+[gd_scene load_steps=8 format=3 uid="uid://c6uqqvav5y7kh"]
+
+[ext_resource type="FontFile" uid="uid://c7tefew45jffm" path="res://Assets/PublicPixel-z84yD.ttf" id="1_102bk"]
+[ext_resource type="Texture2D" uid="uid://eidec8kcrxsa" path="res://Assets/PauseScreen.png" id="1_q7v6j"]
+[ext_resource type="AudioStream" uid="uid://c1l1mwmqvbony" path="res://Assets/Sounds/Select.mp3" id="2_65kwm"]
+[ext_resource type="AudioStream" uid="uid://e2jpngbqnvvt" path="res://Assets/Sounds/Music/Pause.mp3" id="4_iqemr"]
+
+[sub_resource type="GDScript" id="GDScript_e0ec7"]
+script/source = "extends Control
+@export var delay = 0.5
+
+func _process(delta):
+	if delay > 0:
+		delay -= delta
+		if delay < 0:
+			get_child(0).selected = true
+			
+			
+func _input(event):
+	
+	if delay > 0:
+		return
+	
+	if event.is_action_pressed('down') or event.is_action_pressed('up'):
+		$Restart.selected =  !$Restart.selected
+		$SelectLevel.selected = !$SelectLevel.selected 
+		$SelectAudio.play()
+"
+
+[sub_resource type="GDScript" id="GDScript_xfg12"]
+script/source = "extends Label
+
+var selected : bool = false
+
+
+func _process(delta):
+	if selected:
+		text = '>RESTART'	
+	else:
+		text = 'RESTART'
+	
+func _input(event):
+	if event.is_action(\"A\") and selected:
+		
+		get_tree().change_scene_to_packed($\"/root/Globals\".current_level)
+	
+	
+"
+
+[sub_resource type="GDScript" id="GDScript_7gxoj"]
+script/source = "extends Label
+
+var selected : bool = false
+
+@onready var level_screen  = preload('res://Levels/LevelSelectScreen.tscn')
+
+func _process(delta):
+	if selected:
+		text = '>SELECT LEVEL'	
+	else:
+		text = 'SELECT LEVEL'
+
+func _input(event):
+	if event.is_action(\"A\") and selected:
+		get_tree().change_scene_to_packed(level_screen)
+"
+
+[node name="Control2" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_q7v6j")
+
+[node name="Start2" type="Label" parent="."]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 65.0
+offset_top = 53.0
+offset_right = 129.0
+offset_bottom = 76.0
+theme_override_fonts/font = ExtResource("1_102bk")
+theme_override_font_sizes/font_size = 8
+text = "PAUSED"
+
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 40.0
+offset_top = 60.0
+offset_right = 80.0
+offset_bottom = 100.0
+script = SubResource("GDScript_e0ec7")
+
+[node name="Restart" type="Label" parent="Control"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = -1.0
+offset_top = 42.0
+offset_right = 63.0
+offset_bottom = 65.0
+theme_override_fonts/font = ExtResource("1_102bk")
+theme_override_font_sizes/font_size = 8
+text = "RESTART"
+script = SubResource("GDScript_xfg12")
+
+[node name="SelectLevel" type="Label" parent="Control"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = -1.0
+offset_top = 53.0
+offset_right = 63.0
+offset_bottom = 76.0
+theme_override_fonts/font = ExtResource("1_102bk")
+theme_override_font_sizes/font_size = 8
+text = "SELECT LEVEL"
+script = SubResource("GDScript_7gxoj")
+
+[node name="SelectAudio" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource("2_65kwm")
+
+[node name="PauseMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_iqemr")
+autoplay = true

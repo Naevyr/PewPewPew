@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=3 uid="uid://ckd0la3ui4b5j"]
+
+[ext_resource type="Texture2D" uid="uid://dy847351t0878" path="res://Assets/TitleScreen.png" id="1_ak6ck"]
+[ext_resource type="FontFile" uid="uid://c7tefew45jffm" path="res://Assets/PublicPixel-z84yD.ttf" id="2_2avm4"]
+[ext_resource type="PackedScene" uid="uid://nc4ktv6rnsl4" path="res://Levels/LevelSelectScreen.tscn" id="3_qk6c0"]
+[ext_resource type="AudioStream" uid="uid://ggoi8ffdjjn7" path="res://Assets/Sounds/Music/MainScreen.mp3" id="4_3du5v"]
+
+[sub_resource type="GDScript" id="GDScript_xfg12"]
+script/source = "extends Label
+
+@export var level_select_screen = PackedScene
+
+func _input(event):
+	if event.is_action(\"A\"):
+		get_tree().change_scene_to_packed(level_select_screen)
+"
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_ak6ck")
+
+[node name="Start2" type="Label" parent="Control"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 43.0
+offset_top = 122.0
+offset_right = 115.0
+offset_bottom = 145.0
+theme_override_fonts/font = ExtResource("2_2avm4")
+theme_override_font_sizes/font_size = 8
+text = ">CONTINUE"
+
+[node name="Start" type="Label" parent="Control"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 34.0
+offset_top = 81.0
+offset_right = 122.0
+offset_bottom = 114.0
+theme_override_fonts/font = ExtResource("2_2avm4")
+theme_override_font_sizes/font_size = 8
+text = "THANK YOU 
+SO MUCH
+FOR PLAYING"
+horizontal_alignment = 1
+script = SubResource("GDScript_xfg12")
+level_select_screen = ExtResource("3_qk6c0")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource("4_3du5v")
+autoplay = true

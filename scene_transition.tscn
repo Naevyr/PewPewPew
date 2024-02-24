@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3u0o17kdfy7w"]
+
+[sub_resource type="Animation" id="Animation_7xyc4"]
+resource_name = "RESET"
+
+[sub_resource type="Animation" id="Animation_dkxos"]
+resource_name = "scene_rotation"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_va4kw"]
+_data = {
+"RESET": SubResource("Animation_7xyc4"),
+"scene_rotation": SubResource("Animation_dkxos")
+}
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_va4kw")
+}
